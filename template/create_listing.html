@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Create a Listing</h2>
+<form method="post" enctype="multipart/form-data" class="col-md-8">
+    <div class="mb-3">
+        <label>Title</label>
+        <input type="text" class="form-control" name="title" required>
+    </div>
+    <div class="mb-3">
+        <label>Description</label>
+        <textarea class="form-control" name="description" rows="4" required></textarea>
+    </div>
+    <div class="mb-3">
+        <label>Price (₹)</label>
+        <input type="number" class="form-control" name="price" required>
+    </div>
+    <div class="mb-3">
+        <label>Category</label>
+        <select class="form-select" name="category" required>
+            <option value="Electronics">Electronics</option>
+            <option value="Vehicles">Vehicles</option>
+            <option value="Furniture">Furniture</option>
+            <option value="Accessories">Accessories</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label>Image</label>
+        <input type="file" class="form-control" name="image" required>
+    </div>
+    <button class="btn btn-primary">Post Listing</button>
+</form>
+{% endblock %}

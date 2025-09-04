@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Browse Listings</h2>
+
+<form method="get" class="row g-2 mb-4">
+    <div class="col-md-4">
+        <input type="text" class="form-control" name="q" placeholder="Search..." value="{{ request.args.get('q', '') }}">
+    </div>
+    <div class="col-md-3">
+        <select class="form-select" name="category">
+            <option value="">All Categories</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Vehicles">Vehicles</option>
+            <option value="Furniture">Furniture</option>
+        </select>
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-primary">Filter</button>
+    </div>
+</form>
+
+<div class="row">
+    {% for listing in listings %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <a href="{{ url_for('listing_detail', listing_id=listing.id) }}">
+                  <img src="{{ url_for('static', filename='uploads/' ~ listing.image) }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">{{ listing.title }}</h5>
+                    <p class="card-text">{{ listing.price }} ₹</p>
+                    <a href="{{ url_for('listing_detail', listing_id=listing.id) }}" class="btn btn-primary">View</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

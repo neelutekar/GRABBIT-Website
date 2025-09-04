@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ listing.title }}</h2>
+<div class="row">
+    <div class="col-md-8">
+        <img src="{{ url_for('static', filename='uploads/' ~ listing.image) }}" class="img-fluid rounded shadow">
+    </div>
+    <div class="col-md-4">
+        <h4>₹ {{ listing.price }}</h4>
+        <p><strong>Category:</strong> {{ listing.category }}</p>
+        <p>{{ listing.description }}</p>
+        <hr>
+        <p><strong>Seller:</strong> {{ listing.owner.username }}</p>
+    {% if current_user.is_authenticated %}
+        <p><strong>Contact Email:</strong> {{ listing.owner.email }}</p>
+        <a href="mailto:{{ listing.owner.email }}" class="btn btn-outline-secondary btn-sm">Contact Seller</a>
+    {% else %}
+        <p class="text-muted">Please <a href="{{ url_for('login') }}">log in</a> to view the seller's contact information.</p>
+    {% endif %}
+    </div>
+</div>
+{% endblock %}
