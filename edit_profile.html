@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+  <h2>Edit Profile</h2>
+  <form method="POST">
+    <div class="mb-3">
+      <label for="username" class="form-label">New Username</label>
+      <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="current_password" class="form-label">Current Password</label>
+      <input type="password" class="form-control" id="current_password" name="current_password">
+    </div>
+
+    <div class="mb-3">
+      <label for="new_password" class="form-label">New Password</label>
+      <input type="password" class="form-control" id="new_password" name="new_password">
+    </div>
+
+    <button type="submit" class="btn btn-success">Save Changes</button>
+    <a href="{{ url_for('profile') }}" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+{% endblock %}
